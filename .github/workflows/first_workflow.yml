@@ -1,7 +1,21 @@
-on: push
+name: Deploy first workflow.yml file to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+
 jobs:
   first-job:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository42
+        uses: actions/checkout@v2
+
+      - name: Deploy to GitHubPages38
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_tokens: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./ # Assuming the index.html is in the root directory
       - run: node --version
       - run: npm --version
